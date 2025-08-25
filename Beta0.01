@@ -1,0 +1,183 @@
+-- Red-Black Script Executor UI (Complete Version with Thegaygui beta 0.01)
+local player = game.Players.LocalPlayer
+local gui = Instance.new("ScreenGui", player:WaitForChild("PlayerGui"))
+gui.Name = "RedBlackExecutor"
+gui.ResetOnSpawn = false
+
+-- Main Frame
+local main = Instance.new("Frame", gui)
+main.Size = UDim2.new(0, 420, 0, 280)
+main.Position = UDim2.new(0.5, -210, 0.5, -140)
+main.BackgroundColor3 = Color3.fromRGB(0,0,0)
+main.BorderSizePixel = 4
+main.BorderColor3 = Color3.fromRGB(255,0,0)
+main.Active = true
+main.Draggable = true
+
+-- Title
+local title = Instance.new("TextLabel", main)
+title.Size = UDim2.new(1, -40, 0, 30)
+title.BackgroundColor3 = Color3.fromRGB(255,0,0)
+title.Text = "Red Executor"
+title.TextColor3 = Color3.fromRGB(255,255,255)
+title.Font = Enum.Font.SourceSansBold
+title.TextSize = 18
+title.TextXAlignment = Enum.TextXAlignment.Left
+
+-- Minimize Button (ส้มสด)
+local minBtn = Instance.new("TextButton", main)
+minBtn.Size = UDim2.new(0,40,0,30)
+minBtn.Position = UDim2.new(1,-40,0,0)
+minBtn.BackgroundColor3 = Color3.fromRGB(255,140,0)
+minBtn.Text = "-"
+minBtn.TextColor3 = Color3.fromRGB(255,255,255)
+minBtn.Font = Enum.Font.SourceSansBold
+minBtn.TextSize = 20
+
+-- Menu Bar
+local menuBar = Instance.new("Frame", main)
+menuBar.Size = UDim2.new(1,0,0,30)
+menuBar.Position = UDim2.new(0,0,0,30)
+menuBar.BackgroundColor3 = Color3.fromRGB(30,30,30)
+
+local menu1Btn = Instance.new("TextButton", menuBar)
+menu1Btn.Size = UDim2.new(0,100,1,0)
+menu1Btn.Position = UDim2.new(0,0,0,0)
+menu1Btn.BackgroundColor3 = Color3.fromRGB(0,120,255)
+menu1Btn.Text = "Menu 1"
+menu1Btn.TextColor3 = Color3.fromRGB(255,255,255)
+menu1Btn.Font = Enum.Font.SourceSansBold
+menu1Btn.TextSize = 16
+
+local menu2Btn = Instance.new("TextButton", menuBar)
+menu2Btn.Size = UDim2.new(0,100,1,0)
+menu2Btn.Position = UDim2.new(0,100,0,0)
+menu2Btn.BackgroundColor3 = Color3.fromRGB(0,200,100)
+menu2Btn.Text = "Menu 2"
+menu2Btn.TextColor3 = Color3.fromRGB(255,255,255)
+menu2Btn.Font = Enum.Font.SourceSansBold
+menu2Btn.TextSize = 16
+
+-- Container for Pages
+local container = Instance.new("Frame", main)
+container.Size = UDim2.new(1,0,1,-60)
+container.Position = UDim2.new(0,0,0,60)
+container.BackgroundTransparency = 1
+
+-- ================= MENU 1 =================
+local page1 = Instance.new("Frame", container)
+page1.Size = UDim2.new(1,0,1,0)
+page1.BackgroundTransparency = 1
+
+local box = Instance.new("TextBox", page1)
+box.Size = UDim2.new(1,-20,1,-80)
+box.Position = UDim2.new(0,10,0,0)
+box.BackgroundColor3 = Color3.fromRGB(20,20,20)
+box.TextColor3 = Color3.fromRGB(255,255,255)
+box.TextXAlignment = Enum.TextXAlignment.Left
+box.TextYAlignment = Enum.TextYAlignment.Top
+box.MultiLine = true
+box.ClearTextOnFocus = false
+box.Text = "-- ใส่สคริปต์ที่นี่ --"
+box.Font = Enum.Font.Code
+box.TextSize = 16
+
+local execBtn = Instance.new("TextButton", page1)
+execBtn.Size = UDim2.new(0,100,0,35)
+execBtn.Position = UDim2.new(0,10,1,-40)
+execBtn.BackgroundColor3 = Color3.fromRGB(0,200,0)
+execBtn.Text = "Execute"
+execBtn.TextColor3 = Color3.fromRGB(255,255,255)
+execBtn.Font = Enum.Font.SourceSansBold
+execBtn.TextSize = 18
+
+local clearBtn = Instance.new("TextButton", page1)
+clearBtn.Size = UDim2.new(0,100,0,35)
+clearBtn.Position = UDim2.new(0.5,-50,1,-40)
+clearBtn.BackgroundColor3 = Color3.fromRGB(0,120,255)
+clearBtn.Text = "Clear"
+clearBtn.TextColor3 = Color3.fromRGB(255,255,255)
+clearBtn.Font = Enum.Font.SourceSansBold
+clearBtn.TextSize = 18
+
+local closeBtn = Instance.new("TextButton", page1)
+closeBtn.Size = UDim2.new(0,100,0,35)
+closeBtn.Position = UDim2.new(1,-110,1,-40)
+closeBtn.BackgroundColor3 = Color3.fromRGB(255,0,60)
+closeBtn.Text = "Close"
+closeBtn.TextColor3 = Color3.fromRGB(255,255,255)
+closeBtn.Font = Enum.Font.SourceSansBold
+closeBtn.TextSize = 18
+
+-- ================= MENU 2 =================
+local page2 = Instance.new("Frame", container)
+page2.Size = UDim2.new(1,0,1,0)
+page2.BackgroundTransparency = 1
+page2.Visible = false
+
+-- ปุ่ม Thegaygui beta 0.01 ชิดซ้าย สีดำอ่อน
+local flyBtn = Instance.new("TextButton", page2)
+flyBtn.Size = UDim2.new(0,200,0,35)
+flyBtn.Position = UDim2.new(0,10,0,10)  -- ชิดซ้ายบน
+flyBtn.BackgroundColor3 = Color3.fromRGB(70,70,70)
+flyBtn.Text = "Thegaygui beta 0.01"
+flyBtn.TextColor3 = Color3.fromRGB(255,255,255)
+flyBtn.Font = Enum.Font.SourceSansBold
+flyBtn.TextSize = 16
+
+flyBtn.MouseButton1Click:Connect(function()
+    local success, err = pcall(function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/XNEOFF/FlyGuiV3/main/FlyGuiV3.txt"))()
+    end)
+    if not success then warn("Failed to load Fly V3: "..err) end
+end)
+
+-- Mini UI
+local mini = Instance.new("Frame", gui)
+mini.Size = UDim2.new(0,150,0,40)
+mini.Position = UDim2.new(0,20,0,20)
+mini.BackgroundColor3 = Color3.fromRGB(0,0,0)
+mini.BorderSizePixel = 3
+mini.BorderColor3 = Color3.fromRGB(255,0,0)
+mini.Visible = false
+mini.Active = true
+mini.Draggable = true
+
+local miniBtn = Instance.new("TextButton", mini)
+miniBtn.Size = UDim2.new(1,0,1,0)
+miniBtn.BackgroundColor3 = Color3.fromRGB(255,0,0)
+miniBtn.Text = "Executor"
+miniBtn.TextColor3 = Color3.fromRGB(255,255,255)
+miniBtn.Font = Enum.Font.SourceSansBold
+miniBtn.TextSize = 18
+
+-- ========== Functions ==========
+execBtn.MouseButton1Click:Connect(function()
+    local code = box.Text
+    local func, err = loadstring(code)
+    if func then pcall(func) else warn("Error: "..err) end
+end)
+
+clearBtn.MouseButton1Click:Connect(function() box.Text = "" end)
+closeBtn.MouseButton1Click:Connect(function() gui:Destroy() end)
+
+menu1Btn.MouseButton1Click:Connect(function()
+    page1.Visible = true
+    page2.Visible = false
+end)
+
+menu2Btn.MouseButton1Click:Connect(function()
+    page1.Visible = false
+    page2.Visible = true
+end)
+
+-- Minimize / Restore
+minBtn.MouseButton1Click:Connect(function()
+    main.Visible = false
+    mini.Visible = true
+end)
+
+miniBtn.MouseButton1Click:Connect(function()
+    main.Visible = true
+    mini.Visible = false
+end)
